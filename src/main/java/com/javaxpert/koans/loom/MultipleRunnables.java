@@ -20,6 +20,17 @@ public class MultipleRunnables {
         System.out.println("Ephemeral task died after 1 s");
     };
 
+    Runnable eternalTask = () -> {
+    	while(true) {
+    		try {
+				Thread.sleep(10000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+    	}
+    };
+    
     public static class LongRunningTask extends Thread{
         private volatile AtomicBoolean shouldBeStopped=new AtomicBoolean(false);
 
