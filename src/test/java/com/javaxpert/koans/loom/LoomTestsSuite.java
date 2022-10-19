@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.regex.Pattern;
+
 /**
  * Koans like tests suite
  */
@@ -48,5 +50,20 @@ class LoomTestsSuite {
         assertEquals(0,afterStartActiveThreads-initialActiveThreads);
     }
 
+    @Test
+    void virtualThreadDescSHouldContainPattern(){
+        Runnable r = runnableProvider.shortLifeTask;
+        Thread t = Thread.ofVirtual().unstarted(r);
+        String thread_desc= t.toString();
+        System.err.println("Thread desc ="+ thread_desc);
+        assertTrue(thread_desc.contains("VirtualThrea") );
+    }
+
+    @Test
+    void stoppingVirtualThreadsShouldRaiseException() {
+    	Runnable r = runnableProvider.getJustFort1SecondTask();
+    	Thread t = Thread.ofVirtual().start(r);
+    	assertThrows(UnsupportedOperationException.class,() -> {t.stop();},"UnsuportedException expected here!!" );
+    }
 
 }
