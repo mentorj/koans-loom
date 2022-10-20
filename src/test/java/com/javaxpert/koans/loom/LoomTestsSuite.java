@@ -130,9 +130,7 @@ class LoomTestsSuite {
     void countingVirtualThreadsIsTrickyPart2() {
     	Runnable r = runnableProvider.eternalTask;	
     	for(int i=0;i<100;i++) {
-    		  Thread t = Thread.ofVirtual().name("Eternal"+i).start(r);
-    		  
-    		  	
+    		Thread.ofVirtual().name("Eternal"+i).start(r);  
     	}
     	final ThreadMXBean threadMX = ManagementFactory.getThreadMXBean();
     	long[] all_threads_id = threadMX.getAllThreadIds();
@@ -165,19 +163,15 @@ class LoomTestsSuite {
     	        try {
 					Thread.sleep(Duration.ofSeconds(1));
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
     	        counter.incrementAndGet();
-    	        //System.out.println(i);
-    	        //return i;
     	      });
     	      
     	    });
     	    try {
 				Thread.sleep(5000);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
     	    assertEquals(10000,counter.get(),"Counter should host as many tasks launched");
