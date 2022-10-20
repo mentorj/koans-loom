@@ -1,0 +1,29 @@
+# Koans Loom
+
+## Goal
+
+Have an overview of the new Virtual threads from JDK 19
+and show most of the API changes.
+
+
+## Setup
+
+### Install OpenJDK 19 
+
+### Configure your IDE
+
+#### Warning
+
+IntelliJ does not support JDK 19 for the moment so please  switch
+to Eclipse 2022.09 for this exercise
+
+#### Javac settings
+
+You should enable preview features for Javac to  be able to run the tests suite
+
+
+## Working with Koans
+
+All tests (11) are _RED_ initially, just make then pass !!
+You should just fix the test , no need to touch to helper class...
+
